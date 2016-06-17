@@ -1,0 +1,85 @@
+<!-- This is a selection of code from  a review creation page on which I made
+numerous fixes and additions. Although the original file was a .cshtml file, I
+have saved it here as a .html file to preserve some syntax highlighting. A
+combination of HTML, CSS, and C# code can be found here. -->
+
+<!-- This is code that I used to create a light blue-green colored
+gradient across the background of the page. -->
+<style>
+    #ContactPage
+    {
+        background: white; /* For browsers that do not support gradients */
+        background: -webkit-linear-gradient(left top, white, #71AB94); /* For Safari 5.1 to 6.0 */
+        background: -o-linear-gradient(bottom right, white, #71AB94); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient(bottom right, white, #71AB94); /* For Firefox 3.6 to 15 */
+        background: linear-gradient(to bottom right, white, #71AB94); /* Standard syntax */
+    }
+</style>
+
+
+<!--This portion is code I used to move the "Write a Review" header
+to the center of the page's main form, rather than to the top left corner -->
+        <center><h2>Write a Review</h2></center>
+
+<!--This section of the code uses C# code with MVC framework to create
+drop-down menus. Previously, the menus had no default values, the cost rating
+menu had arrows rather than a drop-down and numerical (non-dollar-sign) options,
+and the cost rating menu lacked a way to rate as 0/null. -->
+        <div class="row">
+
+            <!-- Are you a local? -->
+            @{ var listReviewerType = new List<Object> {
+                  new { Text = "Local Reviewer", Value=0 },
+                  new { Text = "Traveler", Value=1 },
+                  new { Text = "Other", Value=2 }
+               };
+            }
+
+            <div class="col-md-3">
+                @Html.DropDownListFor(model => model.Review.Local, new SelectList(listReviewerType, "Value", "Text"), "I am a...", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Review.Local, "", new { @class = "text-danger" })
+            </div>
+
+            @{  var listCostRating = new List<Object> {
+                new { Text = "", Value=0},
+                new { Text = "$", Value=1},
+                new { Text = "$$", Value=2},
+                new { Text = "$$$", Value=3},
+                new { Text = "$$$$", Value=4},
+                new { Text = "$$$$$", Value=5}
+                };
+            }
+
+
+            <!-- Cost Rating -->
+            <div class="col-md-3">
+                @Html.DropDownListFor(model => model.Review.CostRating, new SelectList(listCostRating, "Value", "Text"), "Price Range", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Review.CostRating, "", new { @class = "text-danger" })
+            <!--    @Html.EditorFor(model => model.Review.CostRating, new { htmlAttributes = new { @class = "form-control", @placeholder = "Cost Rating", max = 5, min = 0 } })
+                @Html.ValidationMessageFor(model => model.Review.CostRating, "", new { @class = "text-danger" }) -->
+            </div>
+
+            <!-- Subject List-->
+            @{var listItems = new List<Object> {
+                  new { Text = "Good Eats", Value=0 },
+                  new { Text = "Safe Stays", Value=1 },
+                  new { Text = "Cool Sites", Value=2 },
+                  new { Text = "Fun Times", Value=3 },
+                  new { Text = "Legit Business", Value=4 },
+                  new { Text = "Other", Value=5 }
+              };
+            }
+
+            <div class="col-md-3">
+                @Html.DropDownListFor(model => model.Review.SubjectID, new SelectList(listItems, "Value", "Text"), "Come here for...", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Review.SubjectID, "", new { @class = "text-danger" })
+            </div>
+
+            <!-- Submit Button-->
+            <div class="col-md-3">
+                <input type="submit" value="Post it!" class="btn btn-default" name="Create" id="create-review-btn" />
+            </div>
+
+
+            <!--*/ End of Row -->
+        </div>

@@ -1,0 +1,52 @@
+<!-- The following are snippets of code which I added and
+altered for the Site.css file which dictates styles across
+the Bewander website. -->
+
+<!-- I altered this code for the icons on the home page to
+move them upward (margin-top) and make them visible on all
+types of screen displays. -->
+#home-icons {
+    background: rgba(0,0,0, .5);
+    color: #91D0B2;
+    padding: 15px 0px 10px 0px;
+    margin-top:-175px;
+    z-index:100;
+    position:relative;
+    border-top: 1px solid #91D0B2;
+    border-bottom: none;
+}
+
+<!-- I adjusted this footer code with !important notation in
+order to make the color of footer text standard with other
+icon and text colors across the home page. -->
+footer{
+
+    /*--- center the footer---*/
+    width: 100%;
+    align-content: center;
+    text-align: center;
+    position:absolute;
+    bottom:0;
+    padding-bottom: 10px;
+
+    background-color: #808080 !important;
+    padding-top: 20px;
+
+    /*put the footer in a fixed position*/
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+
+<!-- Altered this Conversation element code's height to make
+full message features visible on site's "Chat" page. Previously,
+the message box on chat conversations was cut off by the footer.
+-->
+#conversation {
+    height:280px;
+    background-color: #f9f9f9;
+    overflow: auto;
+    margin-bottom: -10px;
+    padding-left:0;
+}

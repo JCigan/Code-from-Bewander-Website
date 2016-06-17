@@ -1,0 +1,23 @@
+<!-- This is code that I altered on the layout file which
+dictates the top navbar for all pages on the site. I
+added the "About" button myself, as well as commented out the
+"Create" and "Search" buttons, which were redundant with
+existent features. -->
+
+<div class="navbar-collapse collapse">
+               <ul class="nav navbar-nav" id="AboutSearch">
+                   <li>@Html.ActionLink("About", "About", "Home")</li>
+                   <!-- <li>@Html.ActionLink("Create", "Create", "Reviews")</li>
+                   <li>@Html.ActionLink("Search", "Index", "Reviews")</li> -->
+                   <li id="SearchBar"><input type="text" name="Search" class="form-control" id="SearchInput" autocomplete="off" onkeyup="Search()"><div id="SearchResult"></div></li>
+                   <li id="SearchButton"><button class="btn SearchBtn">Search</button></li>
+               </ul>
+               @if (Request.IsAuthenticated)
+               {
+                   @Html.Action("_LoginPartial", new { UserId = User.Identity.GetUserId() })
+               }
+               else
+               {
+                   @Html.Partial("_LoginPartial", new UIndex());
+               }
+           </div>
